@@ -42,27 +42,30 @@ void addStudent() {
     cout << "Student Added Successfully!\n";
 }
 
-// View all students
-void viewStudents() {
-    if (head == NULL) {
-        cout << "\nNo records found!\n";
-        return;
-    }
+// View specific student
+void viewStudent() {
+    string roll;
+    cout << "\nEnter Roll No to view: ";
+    cin >> roll;
 
     Node* temp = head;
     while (temp != NULL) {
-        cout << "\n--- Student Details ---\n";
-        cout << "Roll No: " << temp->rollNo << endl;
-        cout << "Name: " << temp->name << endl;
-        cout << "Aadhaar No: " << temp->aadhaarNo << endl;
-        cout << "Phone No: " << temp->phoneNo << endl;
-        cout << "Email: " << temp->email << endl;
-
+        if (temp->rollNo == roll) {
+            cout << "\n--- Student Details ---\n";
+            cout << "Roll No: " << temp->rollNo << endl;
+            cout << "Name: " << temp->name << endl;
+            cout << "Aadhaar No: " << temp->aadhaarNo << endl;
+            cout << "Phone No: " << temp->phoneNo << endl;
+            cout << "Email: " << temp->email << endl;
+            return;
+        }
         temp = temp->next;
     }
+
+    cout << "Student not found!\n";
 }
 
-// Modify student by roll number
+// Modify student
 void modifyStudent() {
     string roll;
     cout << "\nEnter Roll No to modify: ";
@@ -99,7 +102,7 @@ int main() {
     do {
         cout << "\n===== MENU =====\n";
         cout << "1. Add Student\n";
-        cout << "2. View Students\n";
+        cout << "2. View Student\n";
         cout << "3. Modify Student\n";
         cout << "4. Exit\n";
         cout << "Enter choice: ";
@@ -107,7 +110,7 @@ int main() {
 
         switch (choice) {
             case 1: addStudent(); break;
-            case 2: viewStudents(); break;
+            case 2: viewStudent(); break;
             case 3: modifyStudent(); break;
             case 4: cout << "Exiting...\n"; break;
             default: cout << "Invalid choice!\n";
